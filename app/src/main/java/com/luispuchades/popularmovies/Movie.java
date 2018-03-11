@@ -1,10 +1,9 @@
 package com.luispuchades.popularmovies;
 
-import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import com.luispuchades.popularmovies.utils.Constants;
 
 /**
  * Created by luisp on 27/02/2018.
@@ -23,20 +22,22 @@ public class Movie implements Parcelable {
     /* String for the Release Date */
     private String mMovieReleaseDate;
 
+    /* Date format variable */
+    private static final String MOVIE_DATE_FORMAT = "YYYY-MM-DD";
+
     /* String for the Plot Synopsis "overview"*/
     private String mMovieOverview;
 
     /* String for poster_path */
-    private Uri mMoviePosterUri;
-
+    private String mMoviePosterPath;
 
     public Movie(String movieTitle,Double voteAverage, String
-            movieReleaseDate, String movieOverview,  Uri moviePosterUri) {
+            movieReleaseDate, String movieOverview,  String moviePosterPath) {
         this.mMovieTitle = movieTitle;
         this.mMovieVoteAverage = voteAverage;
         this.mMovieReleaseDate = movieReleaseDate;
         this.mMovieOverview = movieOverview;
-        this.mMoviePosterUri = moviePosterUri;
+        this.mMoviePosterPath = moviePosterPath;
     }
 
     private Movie(Parcel in) {
@@ -44,7 +45,7 @@ public class Movie implements Parcelable {
         mMovieVoteAverage = in.readDouble();
         mMovieReleaseDate = in.readString();
         mMovieOverview = in.readString();
-        mMoviePosterUri = (Uri) in.readValue(Movie.class.getClassLoader());
+        mMoviePosterPath = in.readString();
     }
 
     /*********************/
@@ -75,6 +76,13 @@ public class Movie implements Parcelable {
         mMovieReleaseDate = movieReleaseDate;
     }
 
+    /* DATE FORMAT */
+    public String getMovieDateFormat() {
+
+        return MOVIE_DATE_FORMAT;
+    }
+
+
     /* OVERVIEW - Plot Synopsis */
     public String getMovieOverview() {
         return mMovieOverview;
@@ -84,11 +92,13 @@ public class Movie implements Parcelable {
     }
 
     /* POSTER PATH */
-    public Uri getMoviePosterUri() {
-        return mMoviePosterUri;
+    public String getMoviePosterPath() {
+
+        return Constants.THEMOVIEDB_POSTER_PATH_BASE_URL + Constants.THEMOVIEDB_POSTER_PHONE_SIZE
+                + mMoviePosterPath;
     }
-    public void setMoviePosterUri(Uri moviePosterUri) {
-        mMoviePosterUri = moviePosterUri;
+    public void setMoviePosterPath(String moviePosterPath) {
+        mMoviePosterPath = moviePosterPath;
     }
 
 
@@ -103,7 +113,7 @@ public class Movie implements Parcelable {
         parcel.writeDouble(mMovieVoteAverage);
         parcel.writeString(mMovieReleaseDate);
         parcel.writeString(mMovieOverview);
-        parcel.writeValue(mMoviePosterUri);
+        parcel.writeString(mMoviePosterPath);
     }
 
     /* Parcelable Creator */
