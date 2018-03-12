@@ -15,10 +15,13 @@ public class Constants {
     public static final String THEMOVIEDB_POSTER_URL = THEMOVIEDB_POSTER_PATH_BASE_URL +
             THEMOVIEDB_POSTER_PHONE_SIZE;
 
+    /*
+     * URL EXAMPLES
+     * http://api.themoviedb.org/3/movie/popular?api_key=[API_KEY]
+     * http://api.themoviedb.org/3/movie/top_rated?api_key=[API_KEY]
+     */
 
-    public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org";
-    public static final String THEMOVIEDB_ENDPOINT_POPULAR = "/movie/popular?api_key=";
-    public static final String THEMOVIEDB_ENDPOINT_TOP_RATED = "/movie/top_rated?api_key=";
+    public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org/movie";
 
     // TODO: CHANGE "YOUR_API_KEY" TO THE PERSONAL KEY
     public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";

@@ -47,7 +47,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         View listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(mContext).inflate(
-                    R.layout.movies_grid_item, parent, false);
+                    R.layout.movies_list_item, parent, false);
         }
 
         ImageView posterImage = listItemView.findViewById(R.id.grid_movie_item);
