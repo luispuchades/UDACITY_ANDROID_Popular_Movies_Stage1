@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.luispuchades.popularmovies.utils.Constants;
 import com.luispuchades.popularmovies.utils.MovieLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity
         // If the list of movies is empty then setEmptyView
         mEmptyStateTextView = findViewById(R.id.empty_view);
         mGridView.setEmptyView(mEmptyStateTextView);
+
+        mAdapter = new MovieAdapter(this, new ArrayList<Movie>());
 
         // Set the adapter on the {@link GridView}
         // so the list can be populated in the user interface
