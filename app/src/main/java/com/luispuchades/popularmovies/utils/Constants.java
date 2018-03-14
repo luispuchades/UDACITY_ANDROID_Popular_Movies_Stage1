@@ -21,8 +21,13 @@ public class Constants {
      * http://api.themoviedb.org/3/movie/top_rated?api_key=[API_KEY]
      */
 
-    public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org/movie";
+    public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
+    public static final String THEMOVIEDB_ENDPOINT_POPULAR = "popular";
+    public static final String THEMOVIEDB_ENDPOINT_TOP_RATED = "top_rated";
+    public static final String THEMOVIEDB_ENDPOINT_API_KEY = "api_key";
+
 
     // TODO: CHANGE "YOUR_API_KEY" TO THE PERSONAL KEY
+    // public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
     public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
 }

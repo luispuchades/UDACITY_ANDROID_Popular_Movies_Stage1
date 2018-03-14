@@ -11,9 +11,11 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -22,11 +24,13 @@ import com.luispuchades.popularmovies.utils.MovieLoader;
 
 import java.util.List;
 
-public class MoviesActivity extends AppCompatActivity
+public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<Movie>> {
 
     /* Tag for Log Messages */
-    private static final String LOG_TAG = MoviesActivity.class.getName();
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
+    /*  */
 
     /**
      * Constant value for the movie loader ID. We can choose any integer.
@@ -40,23 +44,45 @@ public class MoviesActivity extends AppCompatActivity
     /** TextView that is displayed when the list is empty */
     private TextView mEmptyStateTextView;
 
+    /** GridView for movie posters*/
+    private GridView mGridView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movies);
+        setContentView(R.layout.activity_main);
 
         // Find a reference to the {@link GridView} in the layout
-        GridView movieGridView = findViewById(R.id.movies_gv);
+        mGridView = findViewById(R.id.movies_gv);
 
         // If the list of movies is empty then setEmptyView
         mEmptyStateTextView = findViewById(R.id.empty_view);
-        movieGridView.setEmptyView(mEmptyStateTextView);
+        mGridView.setEmptyView(mEmptyStateTextView);
 
         // Set the adapter on the {@link GridView}
         // so the list can be populated in the user interface
-        movieGridView.setAdapter(mAdapter);
+        mGridView.setAdapter(mAdapter);
 
         //TODO: define action setOnItemClickListener
+        // Set an item click listener on the GridView, which sends an intent to a new activity
+        // with detailed information about the choosen film
+        mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // Find the current movie that was clicked on
+                Movie currentMovie = mAdapter.getItem(position);
+
+                // Convert the String URL into a URI object (to pass into the Intent constructor)
+                Uri movieUri = Uri.parse(currentMovie.getMoviePosterPath());
+
+                // Create a new intent to view the movie details
+                Intent movieIntent = new Intent(getApplicationContext(), MovieActivity.class);
+
+                // Send the intent to launch a new activity
+                startActivity(movieIntent);
+            }
+        });
+
 
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
@@ -93,16 +119,17 @@ public class MoviesActivity extends AppCompatActivity
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-        String orderBy = sharedPreferences.getString(
+            // TODO: CHECK
+/*        String orderBy = sharedPreferences.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
-        );
+        );*/
 
         Uri baseUri = Uri.parse(Constants.THEMOVIEDB_BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendPath(String.valueOf(R.string.settings_order_by_most_popular_value));
-        uriBuilder.appendQueryParameter(String.valueOf(R.string.uri_builder_api_key),
+        uriBuilder.appendPath(Constants.THEMOVIEDB_ENDPOINT_POPULAR);
+        uriBuilder.appendQueryParameter(Constants.THEMOVIEDB_ENDPOINT_API_KEY,
                 Constants.THEMOVIEDB_API_KEY);
 
         return new MovieLoader(this, uriBuilder.toString());
@@ -118,12 +145,15 @@ public class MoviesActivity extends AppCompatActivity
         // Set empty state text to display "No movies found."
         mEmptyStateTextView.setText(R.string.no_movies);
 
+
         // Clear the adapter of previous movie data
-        mAdapter.clear();
+        // TODO: CHECK
+        //mAdapter.clear();
 
         // If there is a valid list of {@link Movie}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (movies != null && !movies.isEmpty()) {
+            Log.d(LOG_TAG, "Aquí llega 1");
             mAdapter.addAll(movies);
         }
     }
@@ -131,7 +161,8 @@ public class MoviesActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<List<Movie>> loader) {
         // Loader reset, so we can clear out our existing data.
-        mAdapter.clear();
+        // TODO: CHECK
+        //mAdapter.clear();
     }
 
     @Override
