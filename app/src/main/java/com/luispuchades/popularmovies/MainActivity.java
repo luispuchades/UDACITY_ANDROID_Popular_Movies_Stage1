@@ -73,20 +73,16 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Find the current movie that was clicked on
-                Movie currentMovie = mAdapter.getItem(position);
+                //TODO: CHECK
+                //Movie currentMovie = mAdapter.getItem(position);
 
+                // TODO: CHECK
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
-                Uri movieUri = Uri.parse(currentMovie.getMoviePosterPath());
+                // Uri movieUri = Uri.parse(currentMovie.getMoviePosterPath());
+                launchMovieActivity(position);
 
-                // Create a new intent to view the movie details
-                Intent movieIntent = new Intent(getApplicationContext(), MovieActivity.class);
-
-                // Send the intent to launch a new activity
-                startActivity(movieIntent);
             }
         });
-
-
 
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
@@ -115,6 +111,16 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void launchMovieActivity(int position) {
+        // Create a new intent to view the movie details
+        Intent movieIntent = new Intent(getApplicationContext(), MovieActivity.class);
+
+        // Pass current movie information to the new activity calles MovieActivity
+        movieIntent.putExtra(Constants.EXTRA_MOVIE, position);
+
+        // Send the intent to launch a new activity
+        startActivity(movieIntent);
+    }
 
     @Override
     public Loader<List<Movie>> onCreateLoader(int i, Bundle args) {
@@ -150,8 +156,7 @@ public class MainActivity extends AppCompatActivity
 
 
         // Clear the adapter of previous movie data
-        // TODO: CHECK
-        //mAdapter.clear();
+        mAdapter.clear();
 
         // If there is a valid list of {@link Movie}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
@@ -164,8 +169,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<List<Movie>> loader) {
         // Loader reset, so we can clear out our existing data.
-        // TODO: CHECK
-        //mAdapter.clear();
+        mAdapter.clear();
     }
 
     @Override

@@ -170,7 +170,7 @@ public class MovieJsonUtils {
             JSONArray moviesJsonArray = moviesJson.getJSONArray(THEMOVIEDB_RESULTS);
 
             //For each movie found in the moviesJsonArray, create a {@Link Movie} object
-            for (int i = 0; i < movieJsonString.length(); i++) {
+            for (int i = 0; i < moviesJsonArray.length(); i++) {
 
                 // Get a single movie at position i within the list of movies
                 JSONObject currentJsonMovie = moviesJsonArray.getJSONObject(i);

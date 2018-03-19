@@ -15,6 +15,9 @@ public class Constants {
     public static final String THEMOVIEDB_POSTER_URL = THEMOVIEDB_POSTER_PATH_BASE_URL +
             THEMOVIEDB_POSTER_PHONE_SIZE;
 
+    /** String for putExtra */
+    public static final String EXTRA_MOVIE = "intent_extra_movie";
+
     /*
      * URL EXAMPLES
      * http://api.themoviedb.org/3/movie/popular?api_key=[API_KEY]
