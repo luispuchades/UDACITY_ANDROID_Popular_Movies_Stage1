@@ -95,8 +95,7 @@ public class Movie implements Parcelable {
     /* POSTER PATH */
     public String getMoviePosterPath() {
 
-        return Constants.THEMOVIEDB_POSTER_PATH_BASE_URL + Constants.THEMOVIEDB_POSTER_PHONE_SIZE
-                + mMoviePosterPath;
+        return mMoviePosterPath;
     }
     public void setMoviePosterPath(String moviePosterPath) {
         mMoviePosterPath = moviePosterPath;

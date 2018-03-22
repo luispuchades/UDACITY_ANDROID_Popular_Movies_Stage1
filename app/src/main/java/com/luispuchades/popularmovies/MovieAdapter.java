@@ -63,8 +63,11 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         String moviePosterPath = currentMovie.getMoviePosterPath();
         Log.e(LOG_TAG, moviePosterPath);
 
+
+
         Picasso.with(mContext)
-                .load(Constants.THEMOVIEDB_POSTER_URL + moviePosterPath)
+                .load(Constants.THEMOVIEDB_POSTER_PATH_BASE_URL +
+                        Constants.THEMOVIEDB_POSTER_PHONE_SIZE + moviePosterPath)
                 .resize(mContext.getResources().getInteger(R.integer
                         .themoviedb_poster_w185_width),
                         mContext.getResources().getInteger(R.integer.themoviedb_poster_w185_height))

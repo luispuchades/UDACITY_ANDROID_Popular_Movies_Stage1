@@ -12,8 +12,7 @@
         android:id="@+id/movies_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:numColumns="2"
+        android:numColumns="4"
         android:gravity="center"
         android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp"

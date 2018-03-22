@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity
         // Set the adapter on the {@link GridView}
         // so the list can be populated in the user interface
         mGridView.setAdapter(mAdapter);
+        Log.d(LOG_TAG, "Check1");
 
         //TODO: define action setOnItemClickListener
         // Set an item click listener on the GridView, which sends an intent to a new activity
