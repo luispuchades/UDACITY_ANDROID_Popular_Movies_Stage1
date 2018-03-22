@@ -4,10 +4,10 @@
     android:name="com.luispuchades.popularmovies.SettingsActivity$MoviePreferenceFragment"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/action_settings"
+    android:id="@+id/settings_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.luispuchades.popularmovies.SettingsActivity"
-    tools:ignore="InvalidId">
+    tools:context="com.luispuchades.popularmovies.SettingsActivity" >
+
 </fragment>
 

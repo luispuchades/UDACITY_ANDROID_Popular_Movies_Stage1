@@ -40,12 +40,13 @@ public class Movie implements Parcelable {
         this.mMoviePosterPath = moviePosterPath;
     }
 
-    private Movie(Parcel in) {
-        mMovieTitle = in.readString();
-        mMovieVoteAverage = in.readDouble();
-        mMovieReleaseDate = in.readString();
-        mMovieOverview = in.readString();
-        mMoviePosterPath = in.readString();
+    //TODO: CHECK
+    public Movie(Parcel in) {
+        this.mMovieTitle = in.readString();
+        this.mMovieVoteAverage = in.readDouble();
+        this.mMovieReleaseDate = in.readString();
+        this.mMovieOverview = in.readString();
+        this.mMoviePosterPath = in.readString();
     }
 
     /*********************/
@@ -117,7 +118,7 @@ public class Movie implements Parcelable {
     }
 
     /* Parcelable Creator */
-    public final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
 
         @Override
         public Movie createFromParcel(Parcel parcel) {

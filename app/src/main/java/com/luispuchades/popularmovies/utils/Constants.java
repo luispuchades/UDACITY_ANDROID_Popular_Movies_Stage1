@@ -25,7 +25,8 @@ public class Constants {
      */
 
     public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
-    public static final String THEMOVIEDB_ENDPOINT_POPULAR = "popular";
+    //TODO: CHECK
+    // public static final String THEMOVIEDB_ENDPOINT_POPULAR = "popular";
     public static final String THEMOVIEDB_ENDPOINT_TOP_RATED = "top_rated";
     public static final String THEMOVIEDB_ENDPOINT_API_KEY = "api_key";
 

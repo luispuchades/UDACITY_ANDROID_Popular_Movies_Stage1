@@ -13,9 +13,10 @@ import com.squareup.picasso.Picasso;
 
 public class MovieActivity extends AppCompatActivity {
 
+    /* Tag for Log Messages */
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+
     private Movie mIntentExtraMovie;
-    //TODO: CHECK
-    //private static final int DEFAULT_MOVIE = -1;
 
     private TextView titleTv;
     private TextView voteAverageTv;
@@ -40,6 +41,10 @@ public class MovieActivity extends AppCompatActivity {
         if (intent == null) {
             closeOnError();
         }
+
+        Movie mIntentExtraMovie = intent.getParcelableExtra(getString(R.string.parcel_movie));
+
+
         //TODO:CHECK
         //int movie = 0;
 /*
@@ -53,13 +58,13 @@ public class MovieActivity extends AppCompatActivity {
         }
 */
 
-        Bundle mIntentExtraBundle = this.getIntent().getExtras();
+/*        Bundle mIntentExtraBundle = this.getIntent().getExtras();
 
         if (mIntentExtraBundle != null) {
             mIntentExtraMovie = mIntentExtraBundle.getParcelable(Constants.EXTRA_MOVIE);
-        }
+        }*/
 
-        populateUI();
+        populateUI(mIntentExtraMovie);
         Picasso.with(this)
                 .load(mMoviePosterPath)
                 .into(posterIv);
@@ -73,7 +78,7 @@ public class MovieActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Movie currentMovie) {
 
         /** Capture of views from movies_list_item.xml */
         titleTv = findViewById(R.id.title_tv);
@@ -84,11 +89,11 @@ public class MovieActivity extends AppCompatActivity {
 
         /** Set text to views*/
         // sandwichMainName.setText(checkData(sandwich.getMainName()))
-        mMovieTitle = mIntentExtraMovie.getMovieTitle();
-        mMovieVoteAverage = mIntentExtraMovie.getMovieVoteAverage();
-        mMovieReleaseDate = mIntentExtraMovie.getMovieReleaseDate();
-        mMovieOverview = mIntentExtraMovie.getMovieOverview();
-        mMoviePosterPath = mIntentExtraMovie.getMoviePosterPath();
+        mMovieTitle = currentMovie.getMovieTitle();
+        mMovieVoteAverage = currentMovie.getMovieVoteAverage();
+        mMovieReleaseDate = currentMovie.getMovieReleaseDate();
+        mMovieOverview = currentMovie.getMovieOverview();
+        mMoviePosterPath = currentMovie.getMoviePosterPath();
 
 
         titleTv.setText(checkData(mMovieTitle));

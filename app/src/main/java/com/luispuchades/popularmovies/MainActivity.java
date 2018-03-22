@@ -74,12 +74,12 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Find the current movie that was clicked on
                 //TODO: CHECK
-                //Movie currentMovie = mAdapter.getItem(position);
+                Movie currentMovie = mAdapter.getItem(position);
 
                 // TODO: CHECK
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 // Uri movieUri = Uri.parse(currentMovie.getMoviePosterPath());
-                launchMovieActivity(position);
+                launchMovieActivity(currentMovie);
 
             }
         });
@@ -111,12 +111,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void launchMovieActivity(int position) {
+    private void launchMovieActivity(Movie movie) {
         // Create a new intent to view the movie details
         Intent movieIntent = new Intent(getApplicationContext(), MovieActivity.class);
 
         // Pass current movie information to the new activity calles MovieActivity
-        movieIntent.putExtra(Constants.EXTRA_MOVIE, position);
+        movieIntent.putExtra(Constants.EXTRA_MOVIE, movie);
 
         // Send the intent to launch a new activity
         startActivity(movieIntent);
@@ -129,15 +129,15 @@ public class MainActivity extends AppCompatActivity
                 PreferenceManager.getDefaultSharedPreferences(this);
 
             // TODO: CHECK
-/*        String orderBy = sharedPreferences.getString(
+        String orderBy = sharedPreferences.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
-        );*/
+        );
 
         Uri baseUri = Uri.parse(Constants.THEMOVIEDB_BASE_URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendPath(Constants.THEMOVIEDB_ENDPOINT_POPULAR);
+        uriBuilder.appendPath(orderBy);
         uriBuilder.appendQueryParameter(Constants.THEMOVIEDB_ENDPOINT_API_KEY,
                 Constants.THEMOVIEDB_API_KEY);
 
