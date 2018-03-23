@@ -31,13 +31,15 @@ public class MainActivity extends AppCompatActivity
     /* Tag for Log Messages */
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    /*  */
-
     /**
      * Constant value for the movie loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
-    private static final int MOVIE_LOADER_ID = 1;
+    private static final int MOVIE_LOADER_ID;
+
+    static {
+        MOVIE_LOADER_ID = 1;
+    }
 
     /** Adapter for the list of movies */
     private MovieAdapter mAdapter;

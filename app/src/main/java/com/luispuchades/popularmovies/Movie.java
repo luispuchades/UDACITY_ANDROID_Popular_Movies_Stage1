@@ -41,12 +41,12 @@ public class Movie implements Parcelable {
     }
 
     //TODO: CHECK
-    public Movie(Parcel in) {
-        this.mMovieTitle = in.readString();
-        this.mMovieVoteAverage = in.readDouble();
-        this.mMovieReleaseDate = in.readString();
-        this.mMovieOverview = in.readString();
-        this.mMoviePosterPath = in.readString();
+    private Movie(Parcel in) {
+        mMovieTitle = in.readString();
+        mMovieVoteAverage = in.readDouble();
+        mMovieReleaseDate = in.readString();
+        mMovieOverview = in.readString();
+        mMoviePosterPath = in.readString();
     }
 
     /*********************/

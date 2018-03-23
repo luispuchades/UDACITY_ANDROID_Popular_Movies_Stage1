@@ -35,14 +35,12 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        posterIv = findViewById(R.id.poster_iv);
-
         Intent intent = getIntent();
         if (intent == null) {
             closeOnError();
         }
 
-        Movie mIntentExtraMovie = intent.getParcelableExtra(getString(R.string.parcel_movie));
+        Movie mIntentExtraMovie = intent.getParcelableExtra(Constants.EXTRA_MOVIE);
 
 
         //TODO:CHECK
@@ -66,7 +64,8 @@ public class MovieActivity extends AppCompatActivity {
 
         populateUI(mIntentExtraMovie);
         Picasso.with(this)
-                .load(mMoviePosterPath)
+                .load(Constants.THEMOVIEDB_POSTER_PATH_BASE_URL +
+                        Constants.THEMOVIEDB_POSTER_PHONE_SIZE + mMoviePosterPath)
                 .into(posterIv);
 
         setTitle(mMovieTitle);
@@ -85,10 +84,9 @@ public class MovieActivity extends AppCompatActivity {
         voteAverageTv = findViewById(R.id.vote_average_tv);
         releaseDateTv = findViewById(R.id.release_date);
         overviewTv = findViewById(R.id.overview_tv);
-
+        posterIv = findViewById(R.id.poster_iv);
 
         /** Set text to views*/
-        // sandwichMainName.setText(checkData(sandwich.getMainName()))
         mMovieTitle = currentMovie.getMovieTitle();
         mMovieVoteAverage = currentMovie.getMovieVoteAverage();
         mMovieReleaseDate = currentMovie.getMovieReleaseDate();
@@ -103,7 +101,6 @@ public class MovieActivity extends AppCompatActivity {
 
         releaseDateTv.setText(checkData(mMovieReleaseDate));
         overviewTv.setText(checkData(mMovieOverview));
-        posterIv.setImageResource(Integer.parseInt(mMoviePosterPath));
     }
 
     private String checkData(String string) {

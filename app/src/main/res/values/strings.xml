@@ -38,7 +38,7 @@
 
 
     <!-- Error messages-->
-    <string name="detail_error_message">Sandwich data not available</string>
+    <string name="detail_error_message">Movie data not available</string>
     <string name="no_data">No data</string>
 
     <!-- Lifetime and Bundle -->
