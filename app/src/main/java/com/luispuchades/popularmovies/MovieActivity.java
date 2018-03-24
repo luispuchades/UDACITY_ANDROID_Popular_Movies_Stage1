@@ -82,7 +82,7 @@ public class MovieActivity extends AppCompatActivity {
         /** Capture of views from movies_list_item.xml */
         titleTv = findViewById(R.id.title_tv);
         voteAverageTv = findViewById(R.id.vote_average_tv);
-        releaseDateTv = findViewById(R.id.release_date);
+        releaseDateTv = findViewById(R.id.release_date_tv);
         overviewTv = findViewById(R.id.overview_tv);
         posterIv = findViewById(R.id.poster_iv);
 

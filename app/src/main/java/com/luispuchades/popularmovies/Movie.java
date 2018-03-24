@@ -40,7 +40,6 @@ public class Movie implements Parcelable {
         this.mMoviePosterPath = moviePosterPath;
     }
 
-    //TODO: CHECK
     private Movie(Parcel in) {
         mMovieTitle = in.readString();
         mMovieVoteAverage = in.readDouble();

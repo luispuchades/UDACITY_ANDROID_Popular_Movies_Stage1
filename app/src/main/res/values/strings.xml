@@ -37,10 +37,20 @@
 
 
 
-    <!-- Error messages-->
+    <!-- Error messages -->
     <string name="detail_error_message">Movie data not available</string>
     <string name="no_data">No data</string>
 
     <!-- Lifetime and Bundle -->
     <string name="parcel_movie">PARCEL_MOVIE</string>
+
+    <!-- activity_movie texts  -->
+    <string name="title">Title</string>
+    <string name="release_date">Release Date</string>
+    <string name="rating">Rating</string>
+    <string name="synopsis">Synopsis</string>
+    <string name="separator">separator</string>
+    <string name="poster_image">poster image</string>
+
+
 </resources>

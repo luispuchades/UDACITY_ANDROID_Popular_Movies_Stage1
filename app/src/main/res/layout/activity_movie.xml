@@ -17,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Image pending" />
+        tools:text="Image pending"
+        android:contentDescription="@string/poster_image" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -33,7 +34,8 @@
         app:layout_constraintTop_toBottomOf="@+id/poster_iv"
         app:srcCompat="@android:drawable/screen_background_dark"
         android:layout_marginRight="16dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="8dp"
+        android:contentDescription="@string/separator" />
 
     <TextView
         android:id="@+id/title"
@@ -41,7 +43,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
-        tools:text="Title"
+        android:text="@string/title"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/poster_iv"
         android:layout_marginRight="32dp" />
@@ -63,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
-        tools:text="Release Date"
+        android:text="@string/release_date"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/title"
         android:layout_marginRight="32dp" />
@@ -87,7 +89,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/release_date"
-        tools:text="Rating"
+        android:text="@string/rating"
         android:layout_marginRight="32dp" />
 
     <TextView
@@ -107,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
-        tools:text="Synopsis"
+        android:text="@string/synopsis"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/rating"
         android:layout_marginRight="32dp" />
