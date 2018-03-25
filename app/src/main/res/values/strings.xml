@@ -51,6 +51,7 @@
     <string name="synopsis">Synopsis</string>
     <string name="separator">separator</string>
     <string name="poster_image">poster image</string>
+    <string name="separatorhorizontal">separatorHorizontal</string>
 
 
 </resources>

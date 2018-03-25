@@ -33,5 +33,5 @@ public class Constants {
 
     // TODO: CHANGE "YOUR_API_KEY" TO THE PERSONAL KEY
     // public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
-    public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
+    public static final String THEMOVIEDB_API_KEY = "023b2b406d8702a4b1036c2a587da603";
 }
