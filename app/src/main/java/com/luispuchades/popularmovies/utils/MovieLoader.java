@@ -8,10 +8,6 @@ import com.luispuchades.popularmovies.Movie;
 
 import java.util.List;
 
-/**
- * Created by luisp on 11/03/2018.
- */
-
 public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
 
     /* Tag for Log Messages */
@@ -43,6 +39,7 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     public List<Movie> loadInBackground() {
 
+        //TODO: CHECK
         Log.i(LOG_TAG, "TEST: loadInBackground called");
         if (mUrl == null) {
             return null;

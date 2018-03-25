@@ -15,10 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by luisp on 01/03/2018.
- */
-
 public class MovieAdapter extends ArrayAdapter<Movie> {
 
     /* Tag for Log Messages */
@@ -58,12 +54,9 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         // Find the ImageView with the ID grid_movie_item
         ImageView posterImage = listItemView.findViewById(R.id.grid_movie_item);
 
-        // TODO: CHECK
         /** Capture movie path*/
         String moviePosterPath = currentMovie.getMoviePosterPath();
-        Log.e(LOG_TAG, moviePosterPath);
-
-
+        Log.d(LOG_TAG, moviePosterPath);
 
         Picasso.with(mContext)
                 .load(Constants.THEMOVIEDB_POSTER_PATH_BASE_URL +

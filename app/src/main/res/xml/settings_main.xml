@@ -11,3 +11,4 @@
         android:title="@string/settings_order_by_label" />
 
 </PreferenceScreen>
+
