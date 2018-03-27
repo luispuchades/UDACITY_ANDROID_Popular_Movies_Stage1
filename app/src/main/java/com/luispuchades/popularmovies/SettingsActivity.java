@@ -2,7 +2,6 @@ package com.luispuchades.popularmovies;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 
 /**
@@ -26,11 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        //TODO: CHECK
-        Log.d(LOG_TAG, "Check-point 2");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Log.d(LOG_TAG, "Check-point 3");
-
     }
 
     @Override
@@ -47,14 +42,11 @@ public class SettingsActivity extends AppCompatActivity {
          * happens.
          */
         int id = item.getItemId();
-        Log.d(LOG_TAG, "Check-point 4");
 
         if ( id == android.R.id.home) {
             onBackPressed();
             return true;
         }
-        Log.d(LOG_TAG, "Check-point 5");
-
         return super.onOptionsItemSelected(item);
     }
 }

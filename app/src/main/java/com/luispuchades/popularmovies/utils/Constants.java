@@ -9,7 +9,6 @@ public class Constants {
 
     /* Create URL for the movie path*/
     public static final String THEMOVIEDB_POSTER_PATH_BASE_URL = "http://image.tmdb.org/t/p";
-    // TODO: Check if /w185/ should be /185 without last slash
     public static final String THEMOVIEDB_POSTER_PHONE_SIZE = "/w185/";
 
     public static final String THEMOVIEDB_POSTER_URL = THEMOVIEDB_POSTER_PATH_BASE_URL +
@@ -25,13 +24,11 @@ public class Constants {
      */
 
     public static final String THEMOVIEDB_BASE_URL = "https://api.themoviedb.org/3/movie/";
-    //TODO: CHECK
-    public static final String THEMOVIEDB_ENDPOINT_POPULAR = "popular";
-    public static final String THEMOVIEDB_ENDPOINT_TOP_RATED = "top_rated";
+
     public static final String THEMOVIEDB_ENDPOINT_API_KEY = "api_key";
 
 
     // TODO: CHANGE "YOUR_API_KEY" TO THE PERSONAL KEY
     // public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
-    public static final String THEMOVIEDB_API_KEY = "YOUR_API_KEY";
+    public static final String THEMOVIEDB_API_KEY = "023b2b406d8702a4b1036c2a587da603";
 }

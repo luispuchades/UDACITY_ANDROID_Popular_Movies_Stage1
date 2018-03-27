@@ -39,16 +39,12 @@ public class MovieLoader extends AsyncTaskLoader<List<Movie>> {
     @Override
     public List<Movie> loadInBackground() {
 
-        //TODO: CHECK
         Log.i(LOG_TAG, "TEST: loadInBackground called");
         if (mUrl == null) {
             return null;
         }
 
         // Perform the network request, parse the response, and extract a list of movies.
-        //TODO: CHECK
-        //List<Movie> movies = MovieJsonUtils.fetchMovieData(mUrl);
-        //return movies
         return MovieJsonUtils.fetchMovieData(mUrl);
     }
 }

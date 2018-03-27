@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
-        implements LoaderManager.LoaderCallbacks<List<Movie>> {
+        implements LoaderManager.LoaderCallbacks<List<Movie>>,
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     /* Tag for Log Messages */
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -36,11 +37,7 @@ public class MainActivity extends AppCompatActivity
      * Constant value for the movie loader ID. We can choose any integer.
      * This really only comes into play if you're using multiple loaders.
      */
-    private static final int MOVIE_LOADER_ID;
-
-    static {
-        MOVIE_LOADER_ID = 1;
-    }
+    private static final int MOVIE_LOADER_ID = 1;
 
     /** Adapter for the list of movies */
     private MovieAdapter mAdapter;
@@ -68,23 +65,24 @@ public class MainActivity extends AppCompatActivity
         // Set the adapter on the {@link GridView}
         // so the list can be populated in the user interface
         mGridView.setAdapter(mAdapter);
-        Log.d(LOG_TAG, "Check1");
 
-        //TODO: define action setOnItemClickListener
+        // Obtain a reference to the SharedPreferences file for this app
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        // And register to be notified of preference changes
+        // So ww know when the user has adjusted the query settings
+        prefs.registerOnSharedPreferenceChangeListener(this);
+
         // Set an item click listener on the GridView, which sends an intent to a new activity
         // with detailed information about the choosen film
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 // Find the current movie that was clicked on
-                //TODO: CHECK
                 Movie currentMovie = mAdapter.getItem(position);
 
-                // TODO: CHECK
                 // Convert the String URL into a URI object (to pass into the Intent constructor)
                 // Uri movieUri = Uri.parse(currentMovie.getMoviePosterPath());
                 launchMovieActivity(currentMovie);
-
             }
         });
 
@@ -127,12 +125,29 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(key.equals(getString(R.string.settings_order_by_key))) {
+            //Clear the ListView as a new query will be kicked off
+            mAdapter.clear();
+
+            //Hide the empty state text view as the loading indicator will be displayed.
+            mEmptyStateTextView.setVisibility(View.GONE);
+
+            //Show the loading indicator while new data is being fetched
+            View loadingIndicator = findViewById(R.id.loading_indicator);
+            loadingIndicator.setVisibility(View.VISIBLE);
+
+            //Restart the loader to require THEMOVIEDB as the query settings have been updated
+            getLoaderManager().restartLoader(MOVIE_LOADER_ID, null, this);
+        }
+    }
+
+    @Override
     public Loader<List<Movie>> onCreateLoader(int i, Bundle args) {
 
         SharedPreferences sharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-            // TODO: CHECK
         String orderBy = sharedPreferences.getString(
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)

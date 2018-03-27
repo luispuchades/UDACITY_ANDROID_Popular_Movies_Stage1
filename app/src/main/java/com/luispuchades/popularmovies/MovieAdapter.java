@@ -28,7 +28,7 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
      * @param context of the app
      * @param movies is the list of earthquakes, which is the data source of the adapter
      */
-    public MovieAdapter(Context context, List<Movie> movies) {
+    MovieAdapter(Context context, List<Movie> movies) {
         super(context, 0, movies);
         mContext = context;
     }
@@ -54,20 +54,24 @@ public class MovieAdapter extends ArrayAdapter<Movie> {
         // Find the ImageView with the ID grid_movie_item
         ImageView posterImage = listItemView.findViewById(R.id.grid_movie_item);
 
-        /** Capture movie path*/
-        String moviePosterPath = currentMovie.getMoviePosterPath();
-        Log.d(LOG_TAG, moviePosterPath);
+        // Capture movie path
+        if (currentMovie.getMoviePosterPath() != null) {
+            String moviePosterPath = currentMovie.getMoviePosterPath();
+            Log.d(LOG_TAG, moviePosterPath);
 
-        Picasso.with(mContext)
-                .load(Constants.THEMOVIEDB_POSTER_PATH_BASE_URL +
-                        Constants.THEMOVIEDB_POSTER_PHONE_SIZE + moviePosterPath)
-                .resize(mContext.getResources().getInteger(R.integer
-                        .themoviedb_poster_w185_width),
-                        mContext.getResources().getInteger(R.integer.themoviedb_poster_w185_height))
-                .placeholder(R.drawable.poster_placeholder)
-                .error(R.drawable.poster_placeholder_error)
-                .into(posterImage);
+            Picasso.with(mContext)
+                    .load(Constants.THEMOVIEDB_POSTER_PATH_BASE_URL +
+                            Constants.THEMOVIEDB_POSTER_PHONE_SIZE + moviePosterPath)
+                    .resize(mContext.getResources().getInteger(R.integer
+                                    .themoviedb_poster_w185_width),
+                            mContext.getResources().getInteger(R.integer.themoviedb_poster_w185_height))
+                    .placeholder(R.drawable.poster_placeholder)
+                    .error(R.drawable.poster_placeholder_error)
+                    .into(posterImage);
 
+        } else {
+            listItemView = convertView;
+        }
         return listItemView;
     }
 }
